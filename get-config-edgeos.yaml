@@ -16,3 +16,9 @@
       loop:
         - eth0
         - eth1
+    - name: napalm get_facts
+      napalm_get_facts:
+        filter: facts,interfaces
+
+    - debug:
+        var: napalm_facts
