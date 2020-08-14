@@ -4,11 +4,7 @@
   become: true
   collections:
    name: community.network
-  tasks:
-    - name: Show the configuration for eth0 and eth1
-        edgeos_command:
-          commands: show interfaces ethernet {{ item }}
-          loop:
-            - eth0
-            - eth1
-            - eth2
+   tasks:
+     - name: get facts
+       edgeos_facts:
+         gather_subset: all
