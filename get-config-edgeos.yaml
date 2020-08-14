@@ -1,7 +1,6 @@
 ---
 - hosts: 10.0.0.1
   gather_facts: false
-  ansible_network_os: edgeos
   connection: network_cli
 
   collections:
