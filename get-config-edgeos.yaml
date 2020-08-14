@@ -1,6 +1,6 @@
 ---
 - hosts: 10.0.0.1
-  gather_facts: false
+  gather_facts: true
   connection: network_cli
 
   collections:
