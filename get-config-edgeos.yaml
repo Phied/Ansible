@@ -9,4 +9,10 @@
   tasks:
     - name: Gather facts from the device.
       routeros_facts:
-         gather_subset: all
+         gather_subset: "!config"
+    - name: Show the configuration for eth0 and eth1
+      edgeos_command:
+        commands: show interfaces ethernet {{ item }}
+      loop:
+        - eth0
+        - eth1
