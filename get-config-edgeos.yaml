@@ -1,10 +1,12 @@
 ---
 - hosts: 10.0.0.1
-  gather_facts: true
-  become: true
+  gather_facts: false
+  connection: network_cli
+
   collections:
-   name: community.network
-   tasks:
-     - name: get facts
-       edgeos_facts:
+    - community.network
+
+  tasks:
+    - name: Gather facts from the device.
+      routeros_facts:
          gather_subset: all
