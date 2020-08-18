@@ -3,7 +3,7 @@
   gather_facts: false
   connection: network_cli
   vars:
-    ansible_ssh_port: "{{ ansible_ssh_port }}"
+    ansible_port: "{{ ansible_ssh_port }}"
   
   roles:
     - ansible-network.network-engine
