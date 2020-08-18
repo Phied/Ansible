@@ -13,11 +13,16 @@
     - name: Show version
       ios_command:
         commands: show version
-        
+    
+    - name: Get Backup
+      ios_command:
+        commands: show run
+      become: yes
+      register: ios_cmd
+      
     - name: Show Interfaces
       ios_command:
         commands: show ip int br
-      become: yes
       register: ios_cmd
       
     - name: Get Debug
