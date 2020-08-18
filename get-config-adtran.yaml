@@ -24,9 +24,15 @@
       ios_command:
         commands: show ip int br
       become: yes
+      register: ios_interfaces
       
-    - name: Get Debug
-      debug: var=ios_cmd
+    - name: Display Output of Interfaces
+      debug: var=ios_interfaces
+      
+    - name: Parse RAW output
+      command_parser:
+        file: "/etc/ansible/backups/show_ip_interface_brief.yaml"
+        content: "{{ ios_interfaces.stdout[0] }}"
       
     - name: copy Running config to backup folder
       copy:
