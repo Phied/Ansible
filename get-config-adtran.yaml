@@ -4,8 +4,8 @@
   connection: network_cli
 
   tasks:
-   - name: Getting config 
-     ios_command: 
+   - name: Getting config. 
+     commands:
      - show run 
      register: config
      debug: var=output
