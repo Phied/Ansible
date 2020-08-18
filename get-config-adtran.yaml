@@ -1,10 +1,10 @@
 ---
 - hosts: 10.0.0.250
   gather_facts: false
+  ansible_network_os: "{{ ansible_network_os }}"
   connection: network_cli
   vars:
     ansible_port: "{{ ansible_ssh_port }}"
-    ansible_network_os: "{{ ansible_network_os }}"
   
   roles:
     - ansible-network.network-engine
