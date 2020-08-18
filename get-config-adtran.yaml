@@ -10,9 +10,9 @@
     - ansible-network.network-engine
     
   tasks:
-    - name: Show Version
+    - name: Show Interfaces v1.
       ios_command:
-        commands: show version
+        commands: show ip int br
         
     - name: Show Interfaces
       ios_command:
