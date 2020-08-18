@@ -1,5 +1,5 @@
 ---
-- hosts: 10.0.0.27
+- hosts: 10.0.0.250
   gather_facts: false
   connection: network_cli
   
