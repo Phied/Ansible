@@ -4,12 +4,18 @@
   connection: network_cli
 
   tasks:
+    - name: Show Version
+      ios_command:
+        commands: show version
+        
     - name: Get show running
       ios_command:
         commands: show running-config
       register: ios_cmd
+      
     - name: Get Debug
       debug: var=ios_cmd
+      
     - name: copy Running config to backup folder
       copy:
         content: "{{ ios_cmd.stdout[0] }}"
