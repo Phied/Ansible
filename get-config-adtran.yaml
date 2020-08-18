@@ -8,9 +8,6 @@
    ios_command:
    commands:
      - show run 
-     host: "{{ ansible_host }}"
-     username: admin
-     password: DCT@dm!n93
      register: config
 
   - name: save output to /etc/ansible/backups 
