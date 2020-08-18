@@ -4,6 +4,7 @@
   connection: network_cli
   vars:
     ansible_port: "{{ ansible_ssh_port }}"
+    ansible_network_os: "{{ ansible_network_os }}"
   
   roles:
     - ansible-network.network-engine
@@ -13,9 +14,9 @@
       ios_command:
         commands: show version
         
-    - name: Get show running
+    - name: Show Interfaces
       ios_command:
-        commands: show run
+        commands: show ip int br
       register: ios_cmd
       
     - name: Get Debug
