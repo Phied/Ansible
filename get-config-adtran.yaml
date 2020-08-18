@@ -5,6 +5,5 @@
 
   tasks:
    - name: Getting config 
-     ios_command:
      commands: show run 
      register: config
