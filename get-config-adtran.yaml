@@ -15,7 +15,7 @@
         
     - name: Get show running
       ios_command:
-        commands: show running-config
+        commands: show run
       register: ios_cmd
       
     - name: Get Debug
@@ -24,4 +24,4 @@
     - name: copy Running config to backup folder
       copy:
         content: "{{ ios_cmd.stdout[0] }}"
-        dest: "/etc/ansible/playbooks/backup/router_bkup.txt"
+        dest: "/etc/ansible/backups/router_bkup.txt"
