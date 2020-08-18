@@ -31,7 +31,7 @@
       
     - name: Parse RAW output
       command_parser:
-        file: "parsers/ios/show_ip_interface_brief.yaml"
+        file: "/etc/ansible/parsers/show_ip_interface_brief.yaml"
         content: "{{ ios_interfaces.stdout[0] }}"
       
     - name: copy Running config to backup folder
