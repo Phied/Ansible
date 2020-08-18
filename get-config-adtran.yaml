@@ -23,7 +23,7 @@
     - name: Show Interfaces
       ios_command:
         commands: show ip int br
-      register: ios_cmd
+      become: yes
       
     - name: Get Debug
       debug: var=ios_cmd
