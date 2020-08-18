@@ -34,6 +34,9 @@
         file: "/etc/ansible/parsers/show_ip_interface_brief.yaml"
         content: "{{ ios_interfaces.stdout[0] }}"
       
+    - name: Data AFTER parser-majiggering (Variable is in parser file)
+      debug: var=ip_interface_facts
+      
     - name: copy Running config to backup folder
       copy:
         content: "{{ ios_cmd.stdout[0] }}"
