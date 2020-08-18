@@ -4,8 +4,11 @@
   connection: network_cli
 
   tasks:
-   - name: Getting config. 
-     commands:
-     - show run 
-     register: config
-     debug: var=output
+    - name: Get show running
+      ios_command:
+        commands: show running-config
+      register: ios_cmd
+    - name: copy Running config to backup folder
+      copy:
+        content: "{{ ios_cmd.stdout[0] }}"
+        dest: "/etc/ansible/playbooks/backup/router_bkup.txt"
