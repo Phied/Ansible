@@ -5,8 +5,7 @@
 
   tasks:
    - name: Getting config 
-     ios_command:
-     commands: 
+     ios_command: 
      - show run 
      register: config
      debug: var=output
