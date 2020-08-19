@@ -6,11 +6,15 @@
   vars:
     - ansible_port: "{{ ssh_port }}"
     - ansible_network_os: "{{ network_os }}"
+    - ssh_debug: "{{ ansible_ssh_common_args }}"
   
   roles:
     - ansible-network.network-engine
     
   tasks:
+    - name: Variables
+      debug: var=ssh_debug
+      
     - name: Show version
       ios_command:
         commands: show version
