@@ -6,7 +6,6 @@
   vars:
     - ansible_port: "{{ ssh_port }}"
     - ansible_network_os: "{{ network_os }}"
-    - ansible_ssh_common_args: "{{ ssh_args }}"
   
   roles:
     - ansible-network.network-engine
