@@ -31,6 +31,7 @@
       debug: var=ios_interfaces
       
     - name: Parse RAW output
+      debugger: always
       command_parser:
         file: "/etc/ansible/parsers/show_ip_interface_brief.yaml"
         content: "{{ ios_interfaces.stdout[0] }}"
