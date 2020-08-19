@@ -1,5 +1,6 @@
 ---
-- hosts: 10.0.0.250
+- hosts: DCT-Proxy
+  #hosts: 10.0.0.250
   gather_facts: false
   connection: network_cli
   vars:
