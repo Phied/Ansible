@@ -1,6 +1,7 @@
 ---
 - hosts: 10.0.0.250
   gather_facts: false
+  debugger: always
   connection: network_cli
   vars:
     - ansible_port: "{{ ssh_port }}"
