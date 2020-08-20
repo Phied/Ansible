@@ -23,8 +23,6 @@
     - name: Show version
       ios_command:
         commands: show version
-      provider:
-        transport: cli
     
     - name: Get Backup
       ios_command:
