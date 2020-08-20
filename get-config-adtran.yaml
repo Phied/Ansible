@@ -12,13 +12,14 @@
     - ansible-network.network-engine
     
   tasks:
-    - name: Delay 5 Seconds
-      pause:
-        seconds: 10
         
     - name: Variables
       debug: var=ssh_debug
       
+    - name: Delay 5 Seconds
+      pause:
+        seconds: 5
+        
     - name: Show version
       ios_command:
         commands: show version
