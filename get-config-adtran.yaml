@@ -2,12 +2,12 @@
 - hosts: DCT_Proxy
   #hosts: 10.0.0.250
   gather_facts: false
-  #connection: network_cli
-  transport: cli
+  connection: network_cli
   vars:
     - ansible_port: "{{ ssh_port }}"
     - ansible_network_os: "{{ network_os }}"
     - ssh_debug: "{{ ansible_ssh_common_args }}"
+    - ansible_terminal_initial_prompt_newline: no
   
   roles:
     - ansible-network.network-engine
