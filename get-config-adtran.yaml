@@ -7,7 +7,6 @@
     - ansible_port: "{{ ssh_port }}"
     - ansible_network_os: "{{ network_os }}"
     - ssh_debug: "{{ ansible_ssh_common_args }}"
-    - ansible_terminal_initial_prompt_newline: no
   
   roles:
     - ansible-network.network-engine
@@ -24,6 +23,8 @@
     - name: Show version
       ios_command:
         commands: show version
+      provider:
+        transport: cli
     
     - name: Get Backup
       ios_command:
