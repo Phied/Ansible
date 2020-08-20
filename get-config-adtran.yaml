@@ -14,7 +14,7 @@
   tasks:
     - name: Delay 5 Seconds
       wait_for:
-        delay: 5000
+        delay: 5
         
     - name: Variables
       debug: var=ssh_debug
