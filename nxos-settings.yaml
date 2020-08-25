@@ -15,7 +15,7 @@
     nxos_config:
       backup: yes
       backup_options:
-        filename: "{{ hostname }}"
+        filename: "{{ hostname }}-1"
         dir_path: /etc/ansible/backups
       #check_mode: yes
         
