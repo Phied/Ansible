@@ -22,7 +22,7 @@
   - name: Modify Hostname
     nxos_config:
       lines: hostname {{ hostname }}
-      save_when: never
+      save_when: changed
       
   # ensure snmp location is configured
   - name: Modify SNMP Location
