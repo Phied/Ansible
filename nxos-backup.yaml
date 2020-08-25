@@ -1,0 +1,7 @@
+---
+name: configurable backup path
+  nxos_config:
+    backup: yes
+    backup_options:
+      filename: backup.cfg
+      dir_path: /home/user
