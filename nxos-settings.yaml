@@ -10,20 +10,20 @@
     - ssh_debug: "{{ ansible_ssh_common_args }}"
 
   tasks:
-  - name: configurable backup path
+  - name: Backup Config
     nxos_config:
       backup: yes
       backup_options:
         filename: nxos-test.cfg
         dir_path: /etc/ansible/backups
-      check_mode: yes
+      #check_mode: yes
         
-  - name: configure top level configuration and save it
+  - name: Modify Hostname
     nxos_config:
       lines: hostname "{{ hostname }}"
       save_when: never
   # ensure snmp location is configured
-  - nxos_snmp_location:
+  - nxos_snmp_location: Modify SNMP Location
       location: "{{ snmp_location }}"
       state: present
-      check_mode: yes
+      #check_mode: yes
