@@ -22,8 +22,10 @@
     nxos_config:
       lines: hostname "{{ hostname }}"
       save_when: never
+      
   # ensure snmp location is configured
-  - nxos_snmp_location: Modify SNMP Location
+  - name: Modify SNMP Location
+    nxos_snmp_location:
       location: "{{ snmp_location }}"
       state: present
       #check_mode: yes
