@@ -1,6 +1,7 @@
 
 ---
-- hosts: Metro_NXOS
+- hosts: 172.93.9.210
+  #hosts: Metro_NXOS
   #hosts: Metro_Proxy
   #hosts: 10.0.0.250
   gather_facts: false
