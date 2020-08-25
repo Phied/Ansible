@@ -1,11 +1,12 @@
 
 ---
-- hosts: Metro_Proxy
+- hosts: Metro_NXOS
+  #hosts: Metro_Proxy
   #hosts: 10.0.0.250
   gather_facts: false
   connection: network_cli
   vars:
-    - ansible_port: "{{ ssh_port }}"
+    #- ansible_port: "{{ ssh_port }}"
     - ansible_network_os: "{{ network_os }}"
     - ssh_debug: "{{ ansible_ssh_common_args }}"
 
@@ -14,7 +15,7 @@
     nxos_config:
       backup: yes
       backup_options:
-        filename: nxos-test.cfg
+        filename: "{{ hostname }}"
         dir_path: /etc/ansible/backups
       #check_mode: yes
         
