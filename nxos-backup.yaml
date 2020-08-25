@@ -8,7 +8,7 @@
     - ansible_network_os: "{{ network_os }}"
     - ssh_debug: "{{ ansible_ssh_common_args }}"
 
-tasks:
+- tasks:
   - name: configurable backup path
     nxos_config:
       backup: yes
