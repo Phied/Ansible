@@ -16,3 +16,12 @@
       backup_options:
         filename: nxos-test.cfg
         dir_path: /etc/ansible/backups
+        
+  - name: configure top level configuration and save it
+    nxos_config:
+      lines: hostname {{ hostname }}
+      save_when: modified
+  # ensure snmp location is configured
+  - nxos_snmp_location:
+      location: {{ snmp_location }}
+      state: present
