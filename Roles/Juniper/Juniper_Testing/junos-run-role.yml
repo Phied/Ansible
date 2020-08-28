@@ -16,7 +16,7 @@
         name: routing
 #    - import_role:
         name: snmp
-    - import_role:
+#    - import_role:
 #        name: nat
     - import_role:
         name: aaa
