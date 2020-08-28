@@ -1,0 +1,8 @@
+{% for interface in interfaces %}
+{% if interface['subint'] is defined %}
+set interfaces {{ interface['junos_if'] }} description "{{ interface['desc'] }}"
+{% endif %}
+{% if interface['subint'] is not defined and interface['unit'] > 0 %}
+set interfaces {{ interface['junos_if'] }} unit {{ interface['unit'] }} description "{{ interface['desc'] }}"
+{% endif %}
+{% endfor %} 

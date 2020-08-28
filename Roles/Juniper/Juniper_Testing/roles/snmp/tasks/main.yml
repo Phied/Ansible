@@ -1,0 +1,7 @@
+---
+## tasks file for snmp
+- name: Enable SNMP
+  junos_config:
+    src: snmpv3.j2
+  tags:
+    - snmp

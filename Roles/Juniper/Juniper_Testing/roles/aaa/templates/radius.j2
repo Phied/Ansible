@@ -1,0 +1,20 @@
+set system authentication-order password
+set system authentication-order radius
+{% for server in radius %}
+set system radius-server {{ server['ipv4'] }} secret {{ server['secret'] }} 
+
+{% if server['src_ip'] is defined %}
+{# This part would be set in the hosts file #}
+set system radius-server {{ server['ipv4'] }} source-address {{ server['src_ip'] }}
+{% endif %}
+{% endfor %}
+
+
+set system login class read permissions [ network reset trace view view-configuration ]
+set system login user readonly-user 
+set system login user readonly-user uid 2100
+set system login user readonly-user class read
+set system login user super-users 
+set system login user super-users uid 2101
+set system login user super-users class super-user
+

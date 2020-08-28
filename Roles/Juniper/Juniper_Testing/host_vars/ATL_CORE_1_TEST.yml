@@ -1,0 +1,85 @@
+router_id: 10.10.3.0
+interfaces:
+  - junos_if: "ge-0/0/2"
+    unit: 0
+    desc: "VLAN Bridge from ANSIBLE"
+    enabled: "true"
+    subint:
+      vlans:
+      - 102
+      - 202
+  - junos_if: "ge-0/0/2"
+    unit: 102
+    desc: "IP from ANSIBLE"
+    enabled: "true"
+    ipv4_addr: 10.255.0.2/31
+  - junos_if: "ge-0/0/2"
+    unit: 202
+    desc: "IP Number 2 from Ansible"
+    ipv4_addr: 10.255.0.4/31
+    enable: "true"
+  - junos_if: "ge-0/0/8"
+    unit: 0
+    desc: "ATL-Core-2 ge-0/0/8 - From Ansible"
+    enabled: "true"
+    ipv4_addr: 10.0.3.0/31
+    ospf:
+      area: "0.0.0.0"
+  - junos_if: "ge-0/0/9"
+    unit: 0
+    desc: "ATL-Core-2 ge-0/0/9 - From Ansible"
+    enabled: "true"
+    ipv4_addr: 10.0.3.2/31
+    ospf:
+      area: "0.0.0.0"
+  - junos_if: "lo0"
+    unit: 0
+    desc: "Loopback"
+    enabled: "true"
+    ipv4_addr: "10.10.3.0/32"
+    ospf:
+      area: "0.0.0.0"
+      passive: true
+route_policies:
+  prefix_lists:
+    - name: internal_nets
+      addresses:
+        - 10.0.3.0/31
+        - 10.0.3.2/31
+  rp:
+    - name: internal_networks
+      from:
+        protocols:
+        - direct
+        - ospf
+        pfx_list: internal_nets
+      action: accept
+    - name: deny-all
+      action: reject
+bgp:
+  local_as: 65102
+  groups:
+    - name: IBGP
+      type: internal
+      desc: "IBGP BGP Peering"
+      hold: 30
+      policies:
+        export:
+          - deny-all
+         #  - internal_networks
+        import:
+          - internal_networks
+          - deny-all
+      neighbours:
+        - peer: 10.0.3.1
+          loc_ip: 10.0.3.0
+          default_originate: true
+          desc: "Core 2 IPv4 BGP - From Ansible"
+radius:
+  - name: Server 1
+    ipv4: 209.55.18.114
+    secret: bdb957ef741abbe9e963b05dfe84c7c6078d69d3202839f66d0fc03c0997f2a
+    src_ip: 10.10.3.0
+  - name: Server 2
+    ipv4: 162.244.96.146
+    secret: bdb957ef741abbe9e963b05dfe84c7c6078d69d3202839f66d0fc03c0997f2a

@@ -1,0 +1,30 @@
+---
+- hosts: testing
+  gather_facts: true
+#  connection: local
+  connection: netconf
+
+  vars:
+#    ansible_connection: network_cli
+#    ansible_network_os: junos
+    ansible_user: ansible
+    ansible_ssh_pass: Ansible1
+
+  tasks:
+  - name: Set Hostname
+    junos_system:
+      hostname: "{{ inventory_hostname }}"
+    register: outvar
+
+  - name: Remove Banners
+    junos_banner:
+      banner: "{{ item }}"
+      state: absent
+    loop:
+    - motd
+
+  - name: Update Banners
+    junos_banner:
+      banner: login
+      text: "This banner was set with Ansible!"
+      state: present

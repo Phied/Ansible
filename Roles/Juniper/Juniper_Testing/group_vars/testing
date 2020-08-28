@@ -1,0 +1,14 @@
+ansible_user: ansible
+ansible_ssh_pass: Ansible1
+ansible_network_os: junos
+radius:
+  - name: Server 1
+    ipv4: 209.55.18.114
+    secret: bdb957ef741abbe9e963b05dfe84c7c6078d69d3202839f66d0fc03c0997f2a
+  - name: Server 2
+    ipv4: 162.244.96.146
+    secret: bdb957ef741abbe9e963b05dfe84c7c6078d69d3202839f66d0fc03c0997f2a
+snmp:
+  location: Ansible Lab
+  contact: Keith Perkins
+

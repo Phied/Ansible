@@ -1,0 +1,55 @@
+---
+# tasks file for interfaces
+# tasks:
+- name: Configure subinterfaces first
+  junos_config:
+    src: subints.j2
+    src_format: set
+
+- name: Configure interfaces - Status and Descriptions
+  junos_interfaces:
+    config:
+      - name: "{{ item.junos_if }}"
+        description: "{{ item.desc }}"
+        enabled: "{{ item.enabled }}"
+#    state: merged
+  when: item.unit == 0
+  loop: "{{ interfaces }}"
+
+
+- name: Try template
+  template:
+    src: descs.j2
+    dest: /config.text
+
+- name: Configure subinterfaces - Descriptions
+  junos_config:
+    src: descs.j2
+    src_format: set
+
+- name: Configure interfaces - L3 IPv4
+  junos_l3_interfaces:
+    config:
+      - name: "{{ item.junos_if }}"
+        unit: "{{ item.unit }}"
+        ipv4:
+        - address: "{{ item.ipv4_addr }}"
+    state: merged
+  when: 
+    - item.ipv4_addr is defined
+  loop: "{{ interfaces }}"
+  register: stuff
+  
+- name: Debug Stuff
+  debug: var=stuff
+
+- name: Configure interfaces - L3 IPv6
+  junos_l3_interfaces:
+    config:
+      - name: "{{ item.junos_if }}"
+        unit: "{{ item.unit }}"
+        ipv6:
+        - address: "{{ item.ipv6_addr }}"
+  when:
+    - item.ipv6_addr is defined
+  loop: "{{ interfaces }}"
