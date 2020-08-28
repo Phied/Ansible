@@ -1,4 +1,4 @@
-  tasks:
+---
   - name: Set Hostname
     junos_system:
       hostname: "{{ inventory_hostname }}"
