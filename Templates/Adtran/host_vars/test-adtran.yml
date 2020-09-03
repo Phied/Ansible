@@ -8,32 +8,52 @@ routing_host:
       admin_distance: 15 #Optional
       track: dct-track  #Optional
   bgp:
-    asn: 65000
+    asn: 65115
     addr_family: ipv4 
     networks:  #optional
-    - network: 192.168.1.0
-      mask: 255.255.255.0
+    - network: 23.249.100.96
+      mask: 255.255.255.224
+    - network: 148.59.63.32
+      mask: 255.255.255.224
     redistribute: #optional
     - type: connected
-    - type: static
+    #- type: static
     neighbors:
-    - neighbor: 10.0.0.1
-      remote_as: 65001
-      prefix_in:  test_in #optional
-      prefix_out: test_out #optional
-      route_map_in: rm_in #optional
-      route_map_out: rm_out #optional
+    - neighbor: 148.59.63.0
+      remote_as: 65115
+      prefix_in: #optional
+      prefix_out: loan-protector-announce-out #optional
+      route_map_in: local-pref-150-rm #optional
+      route_map_out: #optional
       shutdown: false #optional
       soft_reconfig: inbound #optional
-      vrf: testing_vrf #optional
-    - neighbor: 10.0.0.2
-      remote_as: 65002
+    - neighbor: 23.249.100.125
+      remote_as: 32732
       prefix_in:
       prefix_out:  #optional
       route_map_in:  #optional
       route_map_out:  #optional
+      #vrf: testing_vrf #optional
       #shutdown: false #optional
       #soft_reconfig: inbound #optional
+    bgp_vrf: #optional
+      name: private
+      addr_family: ipv4
+      networks:  #optional
+      - network: 10.51.0.0
+        mask: 255.255.255.240
+      redistribute: #optional
+      - type: connected
+      - type: static
+      neighbors:
+      - neighbor: 10.51.0.12
+        remote_as: 65115
+        prefix_in:
+        prefix_out:  #optional
+        route_map_in:  #optional
+        route_map_out:  #optional
+        soft_reconfig: inbound #optional
+        shutdown: false
 security_host:
   acls:
   - name: test-acl
