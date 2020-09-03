@@ -1,0 +1,5 @@
+---
+  - name: Generate System Config Snippet
+    template:
+      src: system-template.j2
+      dest: /templates/adtran/system.text
