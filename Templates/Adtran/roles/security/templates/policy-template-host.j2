@@ -13,9 +13,10 @@ ip policy-class {{ policy['name'] }}
 {% endif %}
 
 {% endfor %}
-
+!
 {% if policy['rpf_disable'] is defined and policy['rpf_disable'] is sameas True %}
 no ip policy-class {{ policy['name'] }} rpf-check
 {% endif %}
+!
 {% endfor %}
 {% endif %}
