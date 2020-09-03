@@ -3,3 +3,8 @@
     template:
       src: routing-statics.j2
       dest: /templates/adtran/{{inventory_hostname}}_static_routes.text
+
+  - name: Generate Host Specific BGP Config
+    template:
+      src: routing-bgp.j2
+      dest: /templates/adtran/{{inventory_hostname}}_bgp_config.text

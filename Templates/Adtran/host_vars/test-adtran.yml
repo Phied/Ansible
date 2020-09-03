@@ -7,6 +7,33 @@ routing_host:
       next_hop: 100.100.5.1
       admin_distance: 15 #Optional
       track: dct-track  #Optional
+  bgp:
+    asn: 65000
+    addr_family: ipv4 
+    networks:  #optional
+    - network: 192.168.1.0
+      mask: 255.255.255.0
+    redistribute: #optional
+    - type: connected
+    - type: static
+    neighbors:
+    - neighbor: 10.0.0.1
+      remote_as: 65001
+      prefix_in:  test_in #optional
+      prefix_out: test_out #optional
+      route_map_in: rm_in #optional
+      route_map_out: rm_out #optional
+      shutdown: false #optional
+      soft_reconfig: inbound #optional
+      vrf: testing_vrf #optional
+    - neighbor: 10.0.0.2
+      remote_as: 65002
+      prefix_in:
+      prefix_out:  #optional
+      route_map_in:  #optional
+      route_map_out:  #optional
+      #shutdown: false #optional
+      #soft_reconfig: inbound #optional
 security_host:
   acls:
   - name: test-acl
@@ -39,7 +66,7 @@ security_host:
       dst: 10.0.0.0
       dst_mask: 0.0.0.31
       #dst_port: must use eq, gt, lt <port> if this is used
-      stateless: false
+      stateless: false  #optional
   policies:
   - name: Test-Policy-Class
     rpf_disable: True
