@@ -1,1 +1,34 @@
 router_id: testing
+security_host:
+  acls:
+  - name: test-acl
+    acl_type: standard
+    comment: Testing Custom Host ACL Generation
+    entries:
+    - entry:
+      permit_or_deny: permit
+      protocol: ip
+      src: 23.249.96.0
+      src_mask: 0.0.0.31
+      dst: 10.0.0.0
+      dst_mask: 0.0.0.31
+    - entry:
+      permit_or_deny: permit
+      protocol: ip
+      src: 23.249.97.0
+      src_mask: 0.0.0.31
+      dst: 10.0.0.0
+      dst_mask: 0.0.0.31
+  - name: test-acl-extended
+    acl_type: extended
+    comment: Testing Custom Host ACL Generation
+    entries:
+    - entry:
+      permit_or_deny: permit
+      protocol: ip
+      src: 23.249.100.0
+      src_mask: 0.0.0.31
+      dst: 10.0.0.0
+      dst_mask: 0.0.0.31
+      dst_port:
+      stateless: false

@@ -3,3 +3,8 @@
     template:
       src: acl-template.j2
       dest: /templates/adtran/{{inventory_hostname}}_acl.text
+
+  - name: Generate ACL Config Snippet - Host Specific
+    template:
+      src: acl-template-host.j2
+      dest: /templates/adtran/{{inventory_hostname}}_acl_host.text   
