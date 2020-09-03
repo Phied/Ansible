@@ -1,0 +1,5 @@
+---
+  - name: Generate SNMP Config Snippet
+    template:
+      src: snmp-template.j2
+      dest: /templates/adtran/{{inventory_hostname}_snmp.text

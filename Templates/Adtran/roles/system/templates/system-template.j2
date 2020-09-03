@@ -23,3 +23,41 @@ username {{ user['username'] }} password {{ user['password'] }}
 {% endif %}
 {% endfor %}
 !
+!
+no tftp server
+no tftp server overwrite
+no http server
+http secure-server
+snmp agent
+no ip ftp server
+no ip scp server
+no ip sntp server
+!
+!
+auto-link
+auto-link server primary auto-link.4dct.com
+!
+!
+sip
+sip udp 5060
+sip tcp 5060
+no sip tls
+!
+!
+!
+voice feature-mode network
+voice forward-mode network
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+voice codec-list g729
+  codec g729
+  codec g711ulaw

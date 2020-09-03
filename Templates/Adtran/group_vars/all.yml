@@ -1,0 +1,23 @@
+router_id: testing
+system:
+  users:
+  - user:
+    username: admin
+    password: 1f15391d0c27f4abda8b03a4f6e7eec6ada1
+    encrypted: True
+  enable:
+    enable_password: 3f39d07a2fdf3ac29120d2dbd1042cd80022
+    encrypted: True
+  dns_servers:
+    - server: 8.8.8.8
+    - server: 8.8.4.4
+snmp:
+  communities:
+    - string: dctrocommunity
+      type: RO
+      acl-enabled: True
+      acl: snmp-access-acl
+    - string: checkMKrocomm
+      type: RO
+      acl-enabled: True
+      acl: snmp-checkMK-acl
