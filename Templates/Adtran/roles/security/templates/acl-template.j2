@@ -1,0 +1,20 @@
+ip access-list standard remote-ssh-acl
+  permit 23.249.96.0 0.0.0.31
+  permit 23.249.100.64 0.0.0.15
+  permit 23.249.105.96 0.0.0.31
+!
+ip access-list standard snmp-access-acl
+  permit host 23.249.96.19
+  permit 23.249.100.64 0.0.0.31
+  permit 23.249.105.96 0.0.0.31
+  permit host 3.13.71.133
+!
+ip access-list extended icmp-acl
+  permit icmp any  any       
+!
+ip access-list extended permit-acl
+  permit ip any  any    
+!
+ip access-list standard snmp-checkMK-acl
+  permit host 162.244.96.24
+!

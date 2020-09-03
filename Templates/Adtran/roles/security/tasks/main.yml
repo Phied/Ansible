@@ -1,0 +1,5 @@
+---
+  - name: Generate ACL Config Snippet
+    template:
+      src: acl-template.j2
+      dest: /templates/adtran/{{inventory_hostname}}_acl.text
