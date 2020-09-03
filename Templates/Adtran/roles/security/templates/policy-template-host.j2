@@ -1,0 +1,21 @@
+{% if security_host['policies'] is defined %}
+{%for policy in security_host['policies'] %}
+ip policy-class {{ policy['name'] }}
+{% for entry in policy['entries'] %}
+{% if entry['allow_discard_nat'] != "nat" %}
+  {{ entry['allow_discard_nat']}} list {{ entry['list'] }}{% if entry['from_self'] is defined and entry['from_self'] is sameas True %} self {% endif %}{% if entry['stateless'] is defined and entry['stateless'] is sameas True %}stateless {% endif %}
+{% else %}
+{% if entry['nat_type'] == "source" %}
+  {{ entry['allow_discard_nat']}} {{ entry['nat_type'] }} list {{ entry['list'] }} address {{ entry['nat_address'] }} {% if entry['overload'] is defined and entry['overload'] is sameas True %}overload {% endif %}{% if entry['policy'] is defined %}policy {{ entry['policy'] }}{% endif %}
+{% else %}
+  {{ entry['allow_discard_nat']}} {{ entry['nat_type'] }} list {{ entry['list'] }} address {{ entry['nat_address'] }}
+{% endif %}
+{% endif %}
+
+{% endfor %}
+
+{% if policy['rpf_disable'] is defined and policy['rpf_disable'] is sameas True %}
+no ip policy-class {{ policy['name'] }} rpf-check
+{% endif %}
+{% endfor %}
+{% endif %}

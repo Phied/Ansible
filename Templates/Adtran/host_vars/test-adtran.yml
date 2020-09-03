@@ -1,4 +1,6 @@
 router_id: testing
+routing:
+
 security_host:
   acls:
   - name: test-acl
@@ -16,7 +18,7 @@ security_host:
       permit_or_deny: permit
       protocol: ip
       src: 23.249.97.0
-      src_mask: 0.0.0.31
+      src_mask: 0.0.0.31 #will use host if this is left out
       dst: 10.0.0.0
       dst_mask: 0.0.0.31
   - name: test-acl-extended
@@ -26,9 +28,42 @@ security_host:
     - entry:
       permit_or_deny: permit
       protocol: ip
-      src: 23.249.100.0
+      src: 23.249.100.0  #can use any - but must remove src_mask
       src_mask: 0.0.0.31
       dst: 10.0.0.0
       dst_mask: 0.0.0.31
-      dst_port:
+      #dst_port: must use eq, gt, lt <port> if this is used
       stateless: false
+  policies:
+  - name: Test-Policy-Class
+    rpf_disable: True
+    entries:
+    - entry:
+      allow_discard_nat: allow  #allow/discard/nat
+      #from_self: true    #optional value
+      list: self-acl
+      stateless:    #optional value True/False
+    - entry:
+      allow_discard_nat: allow
+      from_self: true
+      list: expedient-gre-acl
+      policy:
+      stateless: true
+    - entry:
+      allow_discard_nat: allow
+      from_self:
+      list: permit-acl
+      policy:
+      stateless:
+    - entry:
+      allow_discard_nat: nat  #fields needed for NAT
+      nat_address: 100.100.100.1
+      nat_type: source #optional values (souce, destination)
+      overload: true #optional value used in source nat only
+      list: permit-acl
+      policy: dct-wan-policy #optional value used in source nat only
+    - entry:
+      allow_discard_nat: nat 
+      nat_address: 192.168.1.1
+      nat_type: destination
+      list: permit-acl

@@ -7,4 +7,9 @@
   - name: Generate ACL Config Snippet - Host Specific
     template:
       src: acl-template-host.j2
-      dest: /templates/adtran/{{inventory_hostname}}_acl_host.text   
+      dest: /templates/adtran/{{inventory_hostname}}_acl_host.text
+  
+  - name: Generate IP Policy Config Snippet - Host Specific
+    template:
+      src: policy-template-host.j2
+      dest: /templates/adtran/{{inventory_hostname}}_policies_host.text
