@@ -1,0 +1,20 @@
+{% for entry in aaa['servers'] %}
+{% if entry['encrypted'] == True %}
+tacacs-server key encrypted {{ entry['key'] }}
+{% else %}
+tacacs-server key {{ entry['key'] }}
+{% endif %}
+tacacs-server host {{ entry['host'] }}
+{% endfor %}
+!
+aaa authentication login no-tacacs none
+aaa authentication login default group tacacs+ local
+!
+!
+aaa authorization exec default group tacacs+
+aaa accounting commands 1 default stop-only group tacacs+
+aaa accounting commands 7 default stop-only group tacacs+
+aaa accounting connection default start-stop group tacacs+
+aaa accounting exec default start-stop group tacacs+
+!
+!

@@ -21,3 +21,8 @@ snmp:
       type: RO
       acl-enabled: True
       acl: snmp-checkMK-acl
+aaa:
+  servers:
+    - host: tacacs.4dct.com
+      key: 45650618958f70af8e011a508dcff3092601041b39e425a9499729e9cf603ee39fe7
+      encrypted: True

@@ -1,0 +1,5 @@
+---
+  - name: Generate AAA Config Snippet
+    template:
+      src: aaa-template.j2
+      dest: /templates/adtran/{{inventory_hostname}}_aaa.text
