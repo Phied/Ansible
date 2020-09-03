@@ -1,13 +1,13 @@
-
 hostname "{{ inventory_hostname }}"
-{% if  system['enable_password']['encrypted'] = True %}
-enable password encrypted {{ enable_password }}
+{% if  system['enable']['encrypted'] == True %}
+enable password encrypted {{ system['enable']['enable_password'] }}
 {% else %}
 enable password {{ enable_password }}
 {% endif %}
 !
 !
-name-server {% for server in system['dns_servers'] %} {{ dns_servers }} " " {% endfor %}
+name-server {% for server in system['dns_servers'] %} {{ server['server'] }} {% endfor %}
+
 !
 !
 no auto-config
@@ -16,9 +16,10 @@ auto-config authname adtran encrypted password 3f39d07a2fdf3ac29120d2dbd1042cd80
 service password-encryption
 !
 {% for user in system['users'] %}
-{% if user['encrypted'] = True % }
-username {{ username }} password encrypted {{ password }}
+{% if user['encrypted'] == True %}
+username {{ user['username' ] }} password encrypted {{ user['password'] }}
 {% else %}
-username {{ username }} password {{ password }}
+username {{ user['username'] }} password {{ user['password'] }}
+{% endif %}
 {% endfor %}
 !
