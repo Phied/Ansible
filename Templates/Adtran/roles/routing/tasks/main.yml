@@ -1,0 +1,5 @@
+---
+  - name: Generate Host Specific Static Routes
+    template:
+      src: routing-statics.j2
+      dest: /templates/adtran/{{inventory_hostname}}_static_routes.text

@@ -1,6 +1,12 @@
 router_id: testing
-routing:
-
+routing_host:
+  statics:
+    - entry: Default Route
+      network: 0.0.0.0
+      mask: 0.0.0.0
+      next_hop: 100.100.5.1
+      admin_distance: 15 #Optional
+      track: dct-track  #Optional
 security_host:
   acls:
   - name: test-acl
