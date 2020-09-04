@@ -2,18 +2,10 @@
 !
 router bgp {{ routing_host['bgp']['asn'] }}
 {% for neighbor in routing_host['bgp']['neighbors'] %}
-{%if neighbor['vrf'] is defined and neighbor['vrf'] != "" %}
-  vrf {{ neighbor['vrf']}}
-    neighbor {{ neighbor['neighbor'] }}
-      remote-as {{ neighbor['remote_as'] }}
-      {%if neighbor['shutdown'] is defined and neighbor['shutdown'] is sameas false %}no {% endif %}shutdown
-      exit
-{% else %}
   neighbor {{ neighbor['neighbor'] }}
     remote-as {{ neighbor['remote_as'] }}
     {%if neighbor['shutdown'] is defined and neighbor['shutdown'] is sameas false %}no {% endif %}shutdown
     exit
-{% endif %}
 {% endfor %}
   address-family {{ routing_host['bgp']['addr_family'] }}
 {% if routing_host['bgp']['networks'] is defined %}

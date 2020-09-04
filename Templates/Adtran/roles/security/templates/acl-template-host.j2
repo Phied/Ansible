@@ -4,10 +4,10 @@
 ip access-list {{ acl['acl_type'] }} {{ acl['name'] }}
 {%for entry in acl['entries'] %}
 {%if acl['acl_type'] == "standard" %}
-  {{ entry['permit_or_deny'] }} {{ entry['protocol'] }}{%if entry['src_mask'] is defined %} {{ entry['src'] }} {{ entry['src_mask']}}{%else%} host {{ entry['src'] }} {% endif %}
+  {{ entry['permit_or_deny'] }} {%if entry['src_mask'] is defined and entry['src_mask'] != none %}{{ entry['src'] }} {{ entry['src_mask']}}{%else%}host {{ entry['src'] }} {% endif %}
 
 {% else %}
-  {{ entry['permit_or_deny'] }} {{ entry['protocol'] }}{%if entry['src_mask'] is defined %} {{ entry['src'] }} {{ entry['src_mask']}}{% elif entry['src'] == "any" %} any{%else%} host {{ entry['src'] }} {% endif %}{%if entry['dst_mask'] is defined %} {{ entry['dst']}} {{ entry['dst_mask']}}{% elif entry['dst'] == "any" %} any{% else %} host {{ entry['dst']}}{% endif %}{% if entry['dst_port'] is defined and entry['dst_port'] !="" %} {{ entry['dst_port'] }}{% endif %}{% if entry['stateless'] is defined and entry['stateless'] is sameas True %} stateless {% endif %}
+  {{ entry['permit_or_deny'] }} {{ entry['protocol'] }}{%if entry['src_mask'] is defined and entry['src_mask'] != none %} {{ entry['src'] }} {{ entry['src_mask']}}{% elif entry['src'] == "any" %} any{%else%} host {{ entry['src'] }} {% endif %}{%if entry['dst_mask'] is defined and entry['dst_mask'] != none %} {{ entry['dst']}} {{ entry['dst_mask']}}{% elif entry['dst'] == "any" %} any{% else %} host {{ entry['dst']}}{% endif %}{% if entry['dst_port'] is defined and entry['dst_port'] !=none %} {{ entry['dst_port'] }}{% endif %}{% if entry['stateless'] is defined and entry['stateless'] is sameas True %} stateless {% endif %}
 
 {% endif %}
 {% endfor %}

@@ -1,8 +1,7 @@
 router_id: testing
 system:
   users:
-  - user:
-    username: admin
+  - username: admin
     password: 1f15391d0c27f4abda8b03a4f6e7eec6ada1
     encrypted: True
   enable:

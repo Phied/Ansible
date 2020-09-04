@@ -1,12 +1,13 @@
 router_id: testing
 routing_host:
   statics:
-    - entry: Default Route
-      network: 0.0.0.0
+    - network: 0.0.0.0
       mask: 0.0.0.0
       next_hop: 100.100.5.1
       admin_distance: 15 #Optional
       track: dct-track  #Optional
+      entry: Default Route
+      vrf: private
   bgp:
     asn: 65115
     addr_family: ipv4 
@@ -60,13 +61,9 @@ security_host:
     acl_type: standard
     comment: Testing Custom Host ACL Generation
     entries:
-    - entry:
-      permit_or_deny: permit
-      protocol: ip
+    - permit_or_deny: permit
       src: 23.249.96.0
       src_mask: 0.0.0.31
-      dst: 10.0.0.0
-      dst_mask: 0.0.0.31
     - entry:
       permit_or_deny: permit
       protocol: ip

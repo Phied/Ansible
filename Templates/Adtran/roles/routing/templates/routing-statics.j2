@@ -3,7 +3,7 @@
 !
 !
 {% for route in routing_host['statics'] %}
-ip route {{ route['network']  }} {{ route['mask'] }} {{ route['next_hop'] }} {%if route['admin_distance'] is defined %}{{ route['admin_distance'] }} {% endif %}{%if route['track'] is defined %}track {{ route['track'] }}{% endif %}
+ip route {%if route['vrf'] is defined and route['vrf'] != none %}vrf {{ route['vrf'] }} {% endif %}{{ route['network']  }} {{ route['mask'] }} {{ route['next_hop'] }} {%if route['admin_distance'] is defined and route['admin_distance'] != none %}{{ route['admin_distance'] }} {% endif %}{%if route['track'] is defined and route['track'] != none%}track {{ route['track'] }}{% endif %}
 
 {% endfor %}
 !

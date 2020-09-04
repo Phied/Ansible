@@ -1,3 +1,4 @@
+{% if system is defined %}
 hostname "{{ inventory_hostname }}"
 {% if  system['enable']['encrypted'] == True %}
 enable password encrypted {{ system['enable']['enable_password'] }}
@@ -63,3 +64,4 @@ codec g729
 codec g711ulaw
 !
 !
+{% endif %}

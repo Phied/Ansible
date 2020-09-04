@@ -1,3 +1,4 @@
+{% if aaa is defined %}
 {% for entry in aaa['servers'] %}
 {% if entry['encrypted'] == True %}
 tacacs-server key encrypted {{ entry['key'] }}
@@ -18,3 +19,4 @@ aaa accounting connection default start-stop group tacacs+
 aaa accounting exec default start-stop group tacacs+
 !
 !
+{% endif %}

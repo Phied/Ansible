@@ -1,7 +1,9 @@
+{% if snmp is defined %}
 {% for entry in snmp['communities'] %}
-{% if entry['acl-enabled'] == True %}
+{% if entry['acl'] is defined and entry['acl'] != none %}
 snmp-server community {{ entry['string'] }} {{ entry['type'] }} access-class {{ entry['acl']}}
 {% else %}
 snmp-server community {{ entry['string'] }} {{ entry['type'] }}
 {% endif %}
 {% endfor %}
+{% endif %}
