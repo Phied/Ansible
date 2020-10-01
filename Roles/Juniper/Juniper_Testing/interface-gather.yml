@@ -1,4 +1,28 @@
 ---
-- name: Gather junos interfaces as in given arguments
-  junipernetworks.junos.junos_interfaces:
-    state: gathered
+- name: Gather Interface Info
+  hosts: testing-juniper
+  connection: netconf
+#  connection: local
+  gather_facts: false
+  vars:
+    ansible_user: ansible
+    ansible_ssh_pass: Ansible1
+    ansible_network_os: junos
+    ansible_python_interpreter: /usr/bin/python3
+  tasks:
+#  - name: Gather junos interfaces as in given arguments
+#    junos_rpc:
+#      rpc: get-interface-information
+  - name: Gather junos interfaces as in given arguments
+    junipernetworks.junos.junos_interfaces:
+      state: gathered
+    register: response
+
+  - name: Display Results
+    debug: var=response
+
+#  - name: Write to file
+#    local_action: copy content={{response}} dest=./variable.txt
+
+  - name: Run python test
+    shell: python3 ./convert-interface.py '{{ response | to_json(ensure_ascii=False) }}' ./exports/{{ ansible_host }}.csv

@@ -1,0 +1,40 @@
+{
+    "response": {
+        "changed": false,
+        "failed": false,
+        "gathered": [
+            {
+                "description": "PHL Core 1 ge-0/0/0",
+                "enabled": true,
+                "name": "ge-0/0/0"
+            },
+            {
+                "description": "LEX Core 1 ge-0/0/1",
+                "enabled": true,
+                "name": "ge-0/0/1"
+            },
+            {
+                "enabled": true,
+                "name": "ge-0/0/8"
+            },
+            {
+                "enabled": true,
+                "name": "ge-0/0/9"
+            },
+            {
+                "description": "ATL Core 2 ae0",
+                "enabled": true,
+                "name": "ae0"
+            },
+            {
+                "enabled": true,
+                "name": "fxp0"
+            },
+            {
+                "description": "Loopback",
+                "enabled": true,
+                "name": "lo0"
+            }
+        ]
+    }
+}

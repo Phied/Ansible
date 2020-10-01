@@ -1,0 +1,8 @@
+description,enabled,name
+PHL Core 1 ge-0/0/0,True,ge-0/0/0
+LEX Core 1 ge-0/0/1,True,ge-0/0/1
+True,ge-0/0/8
+True,ge-0/0/9
+ATL Core 2 ae0,True,ae0
+True,fxp0
+Loopback,True,lo0
