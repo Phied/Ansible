@@ -1,0 +1,5 @@
+---
+  - name: Generate Host Specific Interfaces
+    template:
+      src: interfaces-host.j2
+      dest: /templates/adtran/{{inventory_hostname}}_interfaces.text

@@ -1,0 +1,4 @@
+---
+- name: Gather junos interfaces as in given arguments
+  junipernetworks.junos.junos_interfaces:
+    state: gathered
