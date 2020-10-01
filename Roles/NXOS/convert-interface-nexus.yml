@@ -1,7 +1,7 @@
 ---
 - name: Gather Interface from Nexus
   hosts: 216.168.47.254
-  connection: network_cli
+  #connection: network_cli
   gather_facts: false
   vars:
     ansible_network_os: nxos_interfaces
