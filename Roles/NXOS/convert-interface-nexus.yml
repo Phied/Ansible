@@ -4,7 +4,7 @@
   #connection: network_cli
   gather_facts: false
   vars:
-    ansible_network_os: nxos_interfaces
+    ansible_network_os: nxos
   tasks:
   - name: Gather interfaces facts from the device using nxos_interfaces
     cisco.nxos.nxos_interfaces:
