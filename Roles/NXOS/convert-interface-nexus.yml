@@ -1,11 +1,22 @@
 ---
 - name: Gather Interface from Nexus
-  hosts: 216.168.47.254
-  #connection: network_cli
+  #hosts: 216.168.47.254
+  hosts: testing-metro-nx
+  connection: network_cli
   gather_facts: false
   vars:
-    ansible_network_os: nxos
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p {{ jh_ssh_user }}@{{ jh_ssh_host }} -p {{ jh_ssh_port }} -o KexAlgorithms=+diffie-hellman-group1-sha1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /Ansible/ansible.key"
   tasks:
   - name: Gather interfaces facts from the device using nxos_interfaces
     cisco.nxos.nxos_interfaces:
       state: gathered
+    register: response
+
+  - name: Display Results
+    debug: var=response
+
+#  - name: Write to file
+#    local_action: copy content={{response}} dest=./variable.txt
+
+  - name: Run python test
+    shell: python3 ./convert-interface.py '{{ response | to_json(ensure_ascii=False) }}' ./exports/{{ ansible_host }}.csv
