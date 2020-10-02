@@ -1,12 +1,13 @@
 ---
 - name: Gather Interface Info
-  hosts: testing-juniper
+  hosts: testing-metro-junos
   connection: netconf
 #  connection: local
   gather_facts: false
   vars:
-    ansible_user: ansible
-    ansible_ssh_pass: Ansible1
+#    ansible_user: ansible
+#    ansible_ssh_pass: Ansible1
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -W %h:%p {{ jh_ssh_user }}@{{ jh_ssh_host }} -p {{ jh_ssh_port }} -o KexAlgorithms=+diffie-hellman-group1-sha1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i /Ansible/ansible.key"  
     ansible_network_os: junos
     ansible_python_interpreter: /usr/bin/python3
   tasks:
