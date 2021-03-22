@@ -1,0 +1,23 @@
+---
+  - name: Set Hostname
+    junos_system:
+      hostname: "{{ inventory_hostname }}"
+
+  - name: Remove Banners
+    junos_banner:
+      banner: "{{ item }}"
+      state: absent
+    loop:
+    - motd
+
+  - name: Update Banners
+    junos_banner:
+      banner: login
+      text: "|
+      -------------------------------------------------
+      | This banner was set with Ansible!           |
+      -------------------------------------------------
+      | You are logged into {{ inventory_hostname }}|
+      -------------------------------------------------"
+      state: present
+      
