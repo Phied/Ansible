@@ -28,3 +28,10 @@
       banner: login
       text: "This banner was set with Ansible!"
       state: present
+  
+  - name: Update Syslog
+    junos_config:
+      lines:
+        - set system syslog host 192.168.44.84 any any
+        - set system syslog host 192.168.44.84 port 10518
+
