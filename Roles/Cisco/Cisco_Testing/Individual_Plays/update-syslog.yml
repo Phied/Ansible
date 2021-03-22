@@ -1,0 +1,15 @@
+---
+- hosts: testing
+#  roles:
+#    - ios.ios
+  gather_facts: false
+  #connection: local
+  #connection: netconf
+  connection: network_cli
+  tasks:
+    ## tasks update Syslog
+    - name: Update Syslog
+      cisco.ios.ios_config:
+        src: ../roles/system/templates/syslog.j2
+      tags:
+        - syslog
