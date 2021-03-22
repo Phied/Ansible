@@ -1,0 +1,5 @@
+{% if system['syslog'] is defined %}{% for host in system['syslog']['hosts'] %}set system syslog host {{ host['name'] }} any any
+{% if host['port'] is defined %}set system syslog host {{ host['name'] }} port {{ host['port'] }}
+{% endif %}
+{% endfor %}
+{% endif %}

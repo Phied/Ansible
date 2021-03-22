@@ -1,0 +1,9 @@
+---
+- hosts: testing
+  gather_facts: false
+  #connection: local
+  #connection: netconf
+  #connection: network_cli
+  tasks:
+    - import_role:
+        name: syslog

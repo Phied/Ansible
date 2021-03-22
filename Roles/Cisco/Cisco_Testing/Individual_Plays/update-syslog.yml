@@ -7,7 +7,7 @@
   #connection: netconf
   connection: network_cli
   tasks:
-    ## tasks update Syslog
+    ## This pulls settings from /etc/ansible/group_vars/<included in group from hosts> or /etc/ansible/<hostname>
     - name: Update Syslog
       cisco.ios.ios_config:
         src: ../roles/system/templates/syslog.j2

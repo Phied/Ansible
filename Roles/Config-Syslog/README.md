@@ -1,0 +1,1 @@
+This role is to be used to configure syslog servers on network devices.  Just be sure to set the syslog settings in the group_vars or host_vars.
