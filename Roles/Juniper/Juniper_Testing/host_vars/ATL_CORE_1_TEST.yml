@@ -85,5 +85,6 @@ radius:
     secret: bdb957ef741abbe9e963b05dfe84c7c6078d69d3202839f66d0fc03c0997f2a
 system:
   syslog:
-    - host: 192.168.1.1
-      port: 1234
+    hosts:
+      - name: 192.168.1.1
+        port: 1234
