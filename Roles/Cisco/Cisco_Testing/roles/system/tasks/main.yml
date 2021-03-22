@@ -1,0 +1,7 @@
+---
+## tasks file for system settings
+- name: Update Syslog
+  cisco.ios.ios_config:
+    src: syslog.j2
+  tags:
+    - syslog
