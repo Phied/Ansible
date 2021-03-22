@@ -5,3 +5,4 @@ set system syslog host {{ syslog['host'] }} any any
 set syslog syslog host {{ syslog['host'] }} port {{ syslog['port'] }}
 {% endif %}
 {% endif %}
+{% endfor %}
