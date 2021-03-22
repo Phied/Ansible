@@ -2,7 +2,7 @@
 ## This will call all the tasks for different network devices
 - name: Apply to Cisco
   import_tasks: syslog-ios.yml
-  when: ansible_network_os is ios
+  when: ansible_network_os == 'ios'
 - name: Apply to Juniper
   import_tasks: syslog-mx.yml
-  when: ansible_network_os is junos
+  when: ansible_network_os == 'junos'
