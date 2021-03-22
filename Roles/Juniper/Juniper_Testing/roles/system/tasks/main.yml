@@ -2,6 +2,7 @@
 ## tasks file for system settings
 - name: Update Syslog
   junos_config:
+    format: "text"
     src: syslog.j2
   tags:
     - syslog
