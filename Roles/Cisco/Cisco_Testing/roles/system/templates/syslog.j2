@@ -1,4 +1,4 @@
-{% if system['syslog'] is defined %}{% for host in system['syslog']['hosts'] %}logging host {{ host['name'] }}{% if host['transport'] is defined%} transport {{ host['transport'] }}{% endif %}{% if host['port'] is defined%} port {{ host['port'] }}
+{% if system['syslog'] is defined %}{% for host in system['syslog']['hosts'] %}logging host {{ host['name'] }}{% if host['transport'] is defined%} transport {{ host['transport'] }}{%else%}transport udp{% endif %}{% if host['port'] is defined%} port {{ host['port'] }}
 {% endif %}
 {% endfor %}
 {% endif %}
