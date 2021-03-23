@@ -1,0 +1,7 @@
+---
+## Update cisco ios-xr devices syslogs (ONLY WORKS ON 5.3 or ABOVE for port).
+- name: Update Syslog
+  cisco.iosxr.iosxr_config:
+    src: syslog-ciscoxr.j2
+  tags:
+    - syslog

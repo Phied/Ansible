@@ -3,6 +3,12 @@
 - name: Apply to Cisco
   import_tasks: syslog-ios.yml
   when: ansible_network_os == 'ios'
+- name: Apply to iosXR
+  import_tasks: syslog-iosxr.yml
+  when: ansible_network_os == 'iosxr'
+- name: Apply to NXOS
+  import_tasks: syslog-nxos.yml
+  when: ansible_network_os == 'nxos'
 - name: Apply to Juniper
   import_tasks: syslog-mx.yml
   when: ansible_network_os == 'junos'
