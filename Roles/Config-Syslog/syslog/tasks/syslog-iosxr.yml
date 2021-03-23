@@ -26,6 +26,14 @@
     - "{{ system['syslog']['hosts'] }}"
   when: ansible_net_version < "5.2"
 
+- name: Update IOSXR syslog
+  cisco.iosxr.iosxr_config:
+    lines:
+      - logging {{ item.name }} vrf default severity info port {{ item.port }}
+  with_items:
+    - "{{ system['syslog']['hosts'] }}"
+  when: ansible_net_version > "5.2"
+
 ## Update cisco ios-xr devices syslogs (ONLY WORKS ON 5.3 or ABOVE for port).
 #- name: Update Syslog
 #  cisco.iosxr.iosxr_config:
