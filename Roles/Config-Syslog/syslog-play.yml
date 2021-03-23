@@ -6,7 +6,7 @@
   #connection: network_cli
   tasks:
     - set_fact:
-        ansible_network_os: "ios"
-      when: ansible_network_os  is undefined
+        ansible_network_os: 'ios'
+      when: ansible_network_os is undefined
     - import_role:
         name: syslog
