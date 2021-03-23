@@ -6,8 +6,8 @@
     - 'config'
 - name: Get OS Version
   debug: var=ansible_net_version
-#- name: Update NXOS Syslog
-#  cisco.nxos.nxos_config:
-#    src: syslog-cisco-nxos.j2
-#  tags:
-#    - syslog
+- name: Update NXOS Syslog
+  cisco.nxos.nxos_config:
+    src: syslog-cisco-nxos.j2
+  tags:
+    - syslog
