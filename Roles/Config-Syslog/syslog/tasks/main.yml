@@ -14,4 +14,4 @@
   when: ansible_network_os == 'junos'
 - name: Apply to Adtran
   import_tasks: syslog-aos.yml
-  when: ansible_network_os == 'aos'
+  when: custom_ansible_network_os == 'aos'
