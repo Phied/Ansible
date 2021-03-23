@@ -10,7 +10,9 @@
     dest: server
     remote_server: "{{ name }}"
     state: present
-    
+  with_items:
+    - "{{ system['syslog']['hosts'] }}"
+
 #- name: Get gather_facts
 #  cisco.nxos.nxos_facts:
 #    gather_subset:
