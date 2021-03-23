@@ -3,7 +3,7 @@
 - name: Apply to Cisco
   import_tasks: syslog-ios.yml
   when: 
-    - ansible_network_os == 'ios'
+    - ansible_network_os == "ios"
     - custom_ansible_network_os is not defined 
 - name: Apply to iosXR
   import_tasks: syslog-iosxr.yml
