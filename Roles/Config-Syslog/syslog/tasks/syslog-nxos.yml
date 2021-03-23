@@ -4,8 +4,8 @@
   cisco.nxos.nxos_facts:
     gather_subset:
     - 'config'
-    gather_network_resources:
-    - 'ansible_network_os'
+- name: Get OS Version
+  debug: var=ansible_net_version
 #- name: Update NXOS Syslog
 #  cisco.nxos.nxos_config:
 #    src: syslog-cisco-nxos.j2
