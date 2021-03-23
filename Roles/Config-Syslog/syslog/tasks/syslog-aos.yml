@@ -1,11 +1,4 @@
 ---
-- name: Update Adtran syslog first
-  ios_command:
-    commands: logging forwarding receiver-ip {{ item.name }}
-  become: yes
-  with_items:
-    - "{{ system['syslog']['hosts'] }}"
-
 - name: Update Adtran syslog
   cli_config:
     config: logging forwarding receiver-ip {{ item.name }}
