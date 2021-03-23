@@ -1,14 +1,31 @@
 ---
-## Update NXOS devices syslogs.
-#- debug:
-#    msg: "{{ item }}"
-#  with_items:
-#    - "{{ system['syslog']['hosts'] }}"
+- name: Get gather_facts
+  cisco.nxos.nxos_facts:
+    gather_subset:
+    - 'config'
+- name: Get OS Version
+  debug: var=ansible_net_version
 
-- name: Configure NXOS Syslog
-  cisco.nxos.nxos_logging:
-    dest: server
-    remote_server: "{{ item.name }}"
-    state: present
+- name: Update IOSXR syslog
+  cisco.nxos.nxos_config:
+    lines:
+      - logging server {{ item.name }}
   with_items:
     - "{{ system['syslog']['hosts'] }}"
+  when: ansible_net_version < "7"
+
+- name: Update IOSXR syslog
+  cisco.nxos.nxos_config:
+    lines:
+      - logging server {{ item.name }} port {{ item.port }}
+  with_items:
+    - "{{ system['syslog']['hosts'] }}"
+  when: ansible_net_version > "7"
+
+#- name: Configure NXOS Syslog
+#  cisco.nxos.nxos_logging:
+#    dest: server
+#    remote_server: "{{ item.name }}"
+#    state: present
+#  with_items:
+#    - "{{ system['syslog']['hosts'] }}"
