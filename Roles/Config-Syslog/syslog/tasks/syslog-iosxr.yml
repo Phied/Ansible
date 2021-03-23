@@ -6,22 +6,30 @@
 - name: Get OS Version
   debug: var=ansible_net_version
 
-- name: Update IOSXR Syslog
-  cisco.iosxr.iosxr_logging:
-    dest: host
-    name: "{{ item.name }}"
-    level: informational
-    state: present
-  tags:
-    - syslog
+#- name: Update IOSXR Syslog
+#  cisco.iosxr.iosxr_logging:
+#    dest: host
+#    name: "{{ item.name }}"
+#    level: informational
+#    state: present
+#  tags:
+#    - syslog
+#  with_items:
+#    - "{{ system['syslog']['hosts'] }}"
+#  when: ansible_net_version < "5.2"
+
+- name: Update IOSXR syslog
+  cisco.iosxr.iosxr_config:
+    lines:
+      - logging "{{ item.name }}" vrf default severity info
   with_items:
     - "{{ system['syslog']['hosts'] }}"
-  when: ansible_net_version < "5.2"
+  when: ansible_net_version < "5.2
 
 ## Update cisco ios-xr devices syslogs (ONLY WORKS ON 5.3 or ABOVE for port).
-- name: Update Syslog
-  cisco.iosxr.iosxr_config:
-    src: syslog-ciscoxr.j2
-  tags:
-    - syslog
-  when: ansible_net_version > "5.2"
+#- name: Update Syslog
+#  cisco.iosxr.iosxr_config:
+#    src: syslog-ciscoxr.j2
+#  tags:
+#    - syslog
+#  when: ansible_net_version > "5.2"
