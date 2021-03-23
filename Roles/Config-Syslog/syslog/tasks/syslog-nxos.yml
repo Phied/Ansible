@@ -8,7 +8,7 @@
 - name: Configure NXOS Syslog
   cisco.nxos.nxos_logging:
     dest: server
-    remote_server: "{{ name }}"
+    remote_server: "{{ item.name }}"
     state: present
   with_items:
     - "{{ system['syslog']['hosts'] }}"
