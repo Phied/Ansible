@@ -1,6 +1,6 @@
 system:
   syslog:
     hosts:
-      - name: 192.168.1.1
-        port: 1234
-      - name: 192.168.3.1
+      - name: 192.168.44.84
+        port: 10518
+      - name: 192.168.44.85
