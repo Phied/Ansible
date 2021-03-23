@@ -1,9 +1,9 @@
 ---
 ## Update NXOS devices syslogs.
-- debug:
-    msg: "{{ item }}"
-  with_items:
-    - "{{ system['syslog']['hosts'] }}"
+#- debug:
+#    msg: "{{ item }}"
+#  with_items:
+#    - "{{ system['syslog']['hosts'] }}"
 
 - name: Configure NXOS Syslog
   cisco.nxos.nxos_logging:
@@ -12,15 +12,3 @@
     state: present
   with_items:
     - "{{ system['syslog']['hosts'] }}"
-
-#- name: Get gather_facts
-#  cisco.nxos.nxos_facts:
-#    gather_subset:
-#    - 'config'
-#- name: Get OS Version
-#  debug: var=ansible_net_version
-#- name: Update NXOS Syslog
-#  cisco.nxos.nxos_config:
-#    src: syslog-cisco-nxos.j2
-#  tags:
-#    - syslog
