@@ -1,0 +1,7 @@
+---
+- name: Update Adtran syslog
+  cisco.nxos.nxos_config:
+    lines:
+      - logging forwarding receiver-ip {{ item.name }}
+  with_items:
+    - "{{ system['syslog']['hosts'] }}"
