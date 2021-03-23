@@ -21,7 +21,7 @@
 - name: Update IOSXR syslog
   cisco.iosxr.iosxr_config:
     lines:
-      - logging "{{ item.name }}" vrf default severity info
+      - logging {{ item.name }} vrf default severity info
   with_items:
     - "{{ system['syslog']['hosts'] }}"
   when: ansible_net_version < "5.2"
