@@ -1,5 +1,9 @@
 ---
 ## Update NXOS devices syslogs.
+- name: Get gather_facts
+  cisco.nxos.nxos_facts:
+    gather_subset:
+    - 'ansible_net_version'
 - name: Update NXOS Syslog
   cisco.nxos.nxos_config:
     src: syslog-cisco-nxos.j2
