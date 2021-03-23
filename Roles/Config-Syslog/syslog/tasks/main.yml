@@ -1,7 +1,7 @@
----
 - set_facts:
     ansible_network_os: "ios"
   when: ansible_network_os is undefined
+---
 ## This will call all the tasks for different network devices
 - name: Apply to Cisco
   import_tasks: syslog-ios.yml
