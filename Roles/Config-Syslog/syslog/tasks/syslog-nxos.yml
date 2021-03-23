@@ -1,7 +1,7 @@
 ---
 ## Update NXOS devices syslogs.
 - name: Update NXOS Syslog
-  cisco.ios.ios_config:
+  cisco.nxos.nxos_config:
     src: syslog-cisco-nxos.j2
   tags:
     - syslog
