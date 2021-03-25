@@ -1,0 +1,17 @@
+---
+## Syslog for Junos
+- name: Update Syslog
+  junos_config:
+    src_format: set
+    src: syslog-mx.j2
+  tags:
+    - syslog
+
+## NTP for Junos
+- name: Update NTP
+  junos_config:
+    lines:
+      - set system ntp server "{{ item.name }}"
+  update: merge
+  with_items:
+    - "{{ system['ntp']['hosts'] }}"

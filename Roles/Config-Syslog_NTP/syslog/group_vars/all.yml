@@ -4,3 +4,6 @@ system:
       - name: 192.168.44.84
         port: 10518
       - name: 192.168.44.85
+  ntp:
+    hosts:
+      - name: 129.6.15.29

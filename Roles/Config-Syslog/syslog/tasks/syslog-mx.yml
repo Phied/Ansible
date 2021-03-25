@@ -1,8 +1,0 @@
----
-## Syslog for Junos
-- name: Update Syslog
-  junos_config:
-    src_format: set
-    src: syslog-mx.j2
-  tags:
-    - syslog

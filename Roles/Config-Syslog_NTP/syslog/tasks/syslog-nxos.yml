@@ -22,6 +22,14 @@
     - "{{ system['syslog']['hosts'] }}"
   when: ansible_net_version > "7"
 
+## Update Cisco NTP.
+- name: Update NTP Cisco
+  cisco.nxos.nxos_ntp:
+    server: "{{ item.name }}"
+    state: present
+  with_items:
+    - "{{ system['ntp']['hosts'] }}"
+
 #- name: Configure NXOS Syslog
 #  cisco.nxos.nxos_logging:
 #    dest: server

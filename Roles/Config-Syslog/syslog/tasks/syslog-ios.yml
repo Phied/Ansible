@@ -1,7 +1,0 @@
----
-## Update disco devices syslogs.
-- name: Update Syslog
-  cisco.ios.ios_config:
-    src: syslog-cisco.j2
-  tags:
-    - syslog
