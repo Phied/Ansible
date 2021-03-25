@@ -28,4 +28,3 @@
                   eq: 830
               protocol: tcp
               grant: deny
-          state: merged
