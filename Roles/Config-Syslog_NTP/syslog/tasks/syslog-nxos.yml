@@ -25,7 +25,7 @@
 ## Update Cisco NTP.
 - name: Update NTP Cisco
   cisco.nxos.nxos_ntp:
-    server: "{{ item.name }}"
+    server: "{{ item.ntp_server }}"
     state: present
   with_items:
     - "{{ system['ntp']['hosts'] }}"

@@ -6,4 +6,4 @@ system:
       - name: 192.168.44.85
   ntp:
     hosts:
-      - name: 129.6.15.29
+      - ntp_server: 129.6.15.29

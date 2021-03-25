@@ -11,6 +11,6 @@
 - name: Update NTP
   junos_config:
     lines:
-      - set system ntp server "{{ item.name }}"
+      - set system ntp server "{{ item.ntp_server }}"
   with_items:
     - "{{ system['ntp']['hosts'] }}"
