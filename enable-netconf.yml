@@ -3,8 +3,8 @@
   gather_facts: false
   connection: network_cli
 
-tasks:
-  - name: enable netconf service on port 830
-    junipernetworks.junos.junos_netconf:
-      listens_on: 830
-      state: present
+  tasks:
+    - name: enable netconf service on port 830
+      junipernetworks.junos.junos_netconf:
+        listens_on: 830
+        state: present
