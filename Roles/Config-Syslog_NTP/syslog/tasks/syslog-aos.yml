@@ -9,4 +9,4 @@
   cli_config:
     config: ntp server {{ item.ntp_server }}
   with_items:
-    - "{{ system['ntp']['hosts'] }}"
+    - "{{ time['ntp']['hosts'] }}"

@@ -1,8 +1,9 @@
-system:
+time:
   ntp:
     hosts:
       - ntp_server: 129.6.15.29
       - ntp_server: 129.6.15.30
+system:
   syslog:
     hosts:
       - name: 192.168.44.84

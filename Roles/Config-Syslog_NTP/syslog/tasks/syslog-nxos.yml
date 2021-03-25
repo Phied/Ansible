@@ -28,7 +28,7 @@
     server: "{{ item.ntp_server }}"
     state: present
   with_items:
-    - "{{ system['ntp']['hosts'] }}"
+    - "{{ time['ntp']['hosts'] }}"
 
 #- name: Configure NXOS Syslog
 #  cisco.nxos.nxos_logging:
