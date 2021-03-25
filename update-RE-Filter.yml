@@ -14,7 +14,8 @@
             aces:
             - name: Allow_Netconf
               source:
-                address: [209.55.18.115/32, 209.55.25.4/32]
+                address: 209.55.18.115
+                address: 209.55.25.4
               destination:
                 port_protocol:
                   eq: 830
