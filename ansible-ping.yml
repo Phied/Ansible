@@ -1,5 +1,5 @@
 - hosts:
   - all
-  gather_facts: false
-  tasks:
-  - action: ping
+  gather_facts: true
+  #tasks:
+  #- action: ping
