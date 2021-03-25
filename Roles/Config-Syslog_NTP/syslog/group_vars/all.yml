@@ -7,3 +7,4 @@ system:
   ntp:
     hosts:
       - ntp_server: 129.6.15.29
+      
