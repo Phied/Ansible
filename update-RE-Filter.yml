@@ -1,0 +1,31 @@
+---
+- hosts: MX_Routers,SRX_Firewalls
+  gather_facts: false
+  connection: netconf
+
+  # BE SURE YOUR INVENTORY HAS JUNIPER WITH NETCONF
+  tasks:
+    - name: Update RE Filter to include netconf
+      junipernetworks.junos.junos_acls:
+    config:
+    - afi: ipv4
+      acls:
+      - name: RE_FILTER
+        aces:
+        - name: Allow_Netconf
+          source:
+            address:
+              - 209.55.18.115/32
+              - 209.55.25.4/32
+          destination:
+            port_protocol:
+              eq: 830
+          protocol: tcp
+          grant: permit
+        - name: Block_Netconf
+          destination:
+            port_protocol:
+              eq: 830
+          protocol: tcp
+          grant: deny
+      state: merged
