@@ -1,0 +1,314 @@
+all: 
+  vars:
+    ansible_user: rancid
+    ssh_port: 22
+  children:
+    Cisco:
+      children:
+        Cisco_IOS:
+          children:
+            OOB:
+        Cisco_IOSXE:
+          children:
+            Tunnel_Routers:
+        Cisco_IOSXR:
+          children:
+            ASR9K_Routers:
+          vars:
+            ansible_network_os :  iosxr
+        ASA_Firewalls:
+      vars:
+        ansible_network_os :  ios
+        ansible_connection :  network_cli
+    Juniper:
+      children:
+        MX_Routers:
+        EX_Switches:
+        QFX_Switches:
+        SRX_Firewalls:
+      vars:
+        ansible_network_os :  junos
+        ansible_connection :  netconf
+    Lexington:
+      children:
+        MX_Routers:
+          hosts:
+            Lexington_Core_1:
+            Lexington_Core_2:
+        EX_Switches:
+          hosts:
+            Lexington_DC_VC_1: 
+            Lexington_DC_VC_2: 
+            Lexington_CO_VC_1: 
+            Lexington_CO_VC_2:
+        Tunnel_Routers:
+          hosts:
+            Lexington_Tunnel_1:
+            Lexington_Tunnel_2:
+        OOB:
+          hosts:
+            Lexington_OOB_1:
+            Lexington_OOB_2:
+      hosts:  
+        Lexington_Core_1: 
+          ansible_host: 209.55.27.5
+        Lexington_Core_2: 
+          ansible_host: 209.55.27.19
+        Lexington_DC_VC_1: 
+          ansible_host: 192.168.172.253
+        Lexington_DC_VC_2: 
+          ansible_host: 192.168.172.254
+        Lexington_CO_VC_1: 
+          ansible_host: 192.168.172.252
+        Lexington_CO_VC_2: 
+          ansible_host: 192.168.172.251
+        Lexington_Tunnel_1: 
+          ansible_host: 209.55.27.1
+        Lexington_Tunnel_2: 
+          ansible_host: 209.55.27.8
+        Lexington_FW: 
+          ansible_host: 209.42.166.4
+        Lexington_SRX240_Cluster: 
+          ansible_host: 209.55.27.20
+        Lexington_OOB_1: 
+          ansible_host: 192.168.2.20 
+          cellular_ip: 63.41.223.30 
+          cellular_ssh_port: 2256
+        Lexington_OOB_2:  
+          ansible_host: 10.25.0.60 
+          cellular_ip: 63.41.223.27 
+          cellular_ssh_port: 2256
+    Savvis:
+      children:
+        MX_Routers:
+          hosts:
+            Savvis_Core_1:
+            Savvis_Core_2:
+        EX_Switches:
+            hosts:
+              Savvis_EX4200_VC:
+        SRX_Firewalls:
+          hosts:
+            Savvis_FW:
+        OOB:
+          hosts:
+            Savvis_OOB:
+      hosts:
+        Savvis_Core_1:
+          ansible_host: 209.55.31.7
+        Savvis_Core_2:
+          ansible_host: 209.55.31.6
+        Savvis_Tunnel_1:
+          ansible_host: 209.55.31.46
+          ansible_ssh_common_args: -C -o ControlMaster=auto -o ControlPersist=60s
+          ansible_connection: local
+        Savvis_Tunnel_2:
+          ansible_host: 209.55.0.2
+        Savvis_EX4200_VC:
+          ansible_host: 192.168.160.2
+        Savvis_FW:
+          ansible_host: 209.55.5.166
+        Savvis_OOB:
+          ansible_host: 192.168.160.10 
+          cellular_ip: 166.168.191.56 
+          cellular_ssh_port: 2256
+    Telx:
+      children:
+        MX_Routers:
+          hosts:
+            Telx_Core_1:
+            Telx_Core_2:
+            Telx_lab_core1:
+            Telx_lab_core2:
+        EX_Switches:
+          hosts:
+            Telx_Mgmt_Sw:
+            Telx_lab_ex1:
+            Telx_lab_ex2:
+        QFX_Switches:
+          hosts:
+            Telx_VCF_1:
+            Telx_VCF_2:
+        Tunnel_Routers:
+          hosts:
+            Telx_Tunnel_1:
+            Telx_Tunnel_2:
+        SRX_Firewalls:
+          hosts:
+            Telx_FW:
+            Telx_lab_srx:
+        OOB:
+          hosts:
+            Telx_OOB_1:
+            Telx_OOB_2:
+      hosts:
+        Telx_Core_1:
+          ansible_host: 209.55.25.2
+        Telx_Core_2:
+          ansible_host: 209.55.25.3
+        Telx_Mgmt_Sw:
+          ansible_host: 192.168.10.40
+        Telx_VCF_1:
+          ansible_host: 192.168.10.41
+        Telx_VCF_2:
+          ansible_host: 192.168.10.42
+        Telx_Tunnel_1:
+          ansible_host: 209.55.18.1
+        Telx_Tunnel_2:
+          ansible_host: 192.168.10.38
+        Telx_OOB_1:
+          ansible_host: 192.168.21.20 
+          cellular_ip: 166.150.70.68 
+          cellular_ssh_port: 2256
+        Telx_OOB_2:
+          ansible_host: 192.168.21.21 
+          cellular_ip: 166.150.70.67 
+          cellular_ssh_port: 2256
+        Telx_FW:
+          ansible_host: 209.55.25.4
+        Telx_lab_core1:
+          ansible_host: 209.42.161.42   
+        Telx_lab_core2:
+          ansible_host: 209.42.161.43   
+        Telx_lab_ex1:
+          ansible_host: 209.42.161.45
+        Telx_lab_ex2:
+          ansible_host: 209.42.161.46
+        Telx_lab_srx:
+          ansible_host: 209.42.161.44
+    PHL:
+      children:
+        ASR9K_Routers:
+          hosts:
+            PHL_Core_1:
+            PHL_Core_2:
+        Tunnel_Routers:
+          hosts:
+            PHL_Tunnel_1:
+            PHL_Tunnel_2:
+        SRX_Firewalls:
+          hosts:
+            PHL_VZB_SRX:
+            PHL_FW:
+        QFX_Switches:
+          hosts:
+            PHL_L3_Cage_VCF_1:
+            PHL_L3_Cage_VCF_2:
+            PHL_Netrality_VC_1:
+            PHL_Netrality_VC_2:
+            PHL_Racks_QFX_Top:
+            PHL_Racks_QFX_Bottom:
+        OOB:
+          hosts:
+            PHL_L3_Cage_OOB:
+            PHL_Netrality_OOB:
+            PHL_Racks_OOB:
+        ASA_Firewalls:
+          hosts:
+            PHL_ASA_FW:
+      hosts:
+        PHL_Core_1:
+          ansible_host: 4.34.199.34
+        PHL_Core_2:
+          ansible_host: 63.65.184.202
+        PHL_L3_Cage_VCF_1:
+          ansible_host: 192.168.9.50
+        PHL_L3_Cage_VCF_2:
+          ansible_host: 192.168.9.51
+        PHL_Netrality_VC_1:
+          ansible_host: 192.168.9.54
+        PHL_Netrality_VC_2:
+          ansible_host: 192.168.9.55
+        PHL_Tunnel_1:
+          ansible_host: 162.244.100.180
+        PHL_Tunnel_2:
+          ansible_host: 162.244.100.181
+        PHL_L3_Cage_OOB:
+          ansible_host: 192.168.9.61 
+          cellular_ip: 166.252.164.252 
+          cellular_ssh_port: 2256
+        PHL_Netrality_OOB:
+          ansible_host: 192.168.9.62 
+          cellular_ip: 63.46.126.209 
+          cellular_ssh_port: 2256
+        PHL_Racks_OOB:
+          ansible_host: 192.168.9.60 
+          cellular_ip: 166.252.164.251 
+          cellular_ssh_port: 2256
+        PHL_Racks_QFX_Top:
+          ansible_host: 192.168.9.58
+        PHL_Racks_QFX_Bottom:
+          ansible_host: 192.168.9.59
+        PHL_FW:
+          ansible_host: 162.244.96.24
+        PHL_ASA_FW:
+          ansible_host: 162.244.96.2
+        PHL_VZB_SRX:
+          ansible_host: 162.244.97.10
+    STL:
+      children:
+        ASR9K_Routers:
+          hosts:
+            STL_Core_1:
+        SRX_Firewalls:
+          hosts:
+            STL_VZB_SRX:
+        ASA_Firewalls:
+          hosts:
+            STL_ASA_FW:
+        Cisco_IOS:
+          hosts:
+            STL_Core_SW:
+            STL_Public_SW:
+      hosts:
+        STL_Core_1: 
+          ansible_host: 162.244.102.130
+        STL_ASA_FW:
+          ansible_host: 162.244.102.2
+        STL_Public_SW:
+          ansible_host: 162.244.102.102
+        STL_Core_SW:
+          ansible_host: 172.16.60.1
+        STL_OOB:
+          ansible_host: 192.168.60.55 
+          cellular_ip: 166.252.18.166 
+          cellular_ssh_port: 2256
+        STL_VZB_SRX:
+          ansible_host: 162.244.103.10
+    Servers:
+      children:
+        DockerHosts:
+          hosts:
+            Oxidized:
+            DCIM:
+        DockerContainers:
+          hosts:
+            AccessJumpContainer:
+      hosts:
+        TAC1:
+          ansible_host: 209.55.5.180 
+          ansible_port: 2265
+        TAC2:
+          ansible_host: 209.55.5.181 
+          ansible_port: 2265
+        Auth01:
+          ansible_host: 209.55.18.114
+        Auth02:
+          ansible_host: 162.244.96.146
+        Oxidized:
+          ansible_host: 209.55.18.115
+        AccessJumpContainer:
+          ansible_host: 209.55.18.115 
+          ansible_port: 2265
+        CoreEng_TelxLab:
+          ansible_host: 208.85.132.70
+        DCIM:
+          ansible_host: 192.168.6.23
+        DCT_NMS:
+          ansible_host: 3.13.71.133
+        MtmAccess_NMS:
+          ansible_host: 3.130.146.149
+        MOS_NMS:
+          ansible_host: 18.189.0.174
+        ExaBGP:
+          ansible_host: 192.168.6.235                
