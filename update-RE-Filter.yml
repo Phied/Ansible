@@ -15,4 +15,4 @@
         - set firewall family inet filter RE_FILTER term Block_Netconf from protocol tcp
         - set firewall family inet filter RE_FILTER term Block_Netconf from destination-port 830
         - set firewall family inet filter RE_FILTER term Block_Netconf then discard
-    update: merge
+      update: merge
