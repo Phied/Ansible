@@ -1,0 +1,12 @@
+# Example command line: ansible-inventory -v --list -i netbox_inventory.yml
+
+plugin: netbox.netbox.nb_inventory
+api_endpoint: http://192.168.6.23:8000
+validate_certs: True
+config_context: False
+group_by:
+  - site
+query_filters:
+  - role: network-edge-router
+device_query_filters:
+  - has_primary_ip: 'true'
