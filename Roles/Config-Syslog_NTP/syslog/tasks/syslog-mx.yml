@@ -18,4 +18,4 @@
     lines:
       - set system ntp server "{{ item.ntp_server }}"
   with_items:
-    - "{{ time['ntp']['hosts'] }}"
+    - "{{ system['settings']['ntp'] }}"

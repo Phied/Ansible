@@ -1,4 +1,4 @@
-{% if system['syslog'] is defined %}{% for host in system['syslog']['hosts'] %}logging {{ host['name'] }}{% if host['vrf'] is defined%} vrf {{ host['vrf'] }}{% endif %}{% if host['severity'] is defined%} severity {{ host['severity'] }}{% endif %}{% if host['port'] is defined%} port {{ host['port'] }}
+{% if system['settings']['syslog'] is defined %}{% for host in system['settings']['syslog'] %}logging {{ host['name'] }}{% if host['vrf'] is defined%} vrf {{ host['vrf'] }}{% endif %}{% if host['severity'] is defined%} severity {{ host['severity'] }}{% endif %}{% if host['port'] is defined%} port {{ host['port'] }}
 {% endif %}
 {% endfor %}
 {% endif %}

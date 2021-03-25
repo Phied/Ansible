@@ -11,7 +11,7 @@
     lines:
       - logging server {{ item.name }}
   with_items:
-    - "{{ system['syslog']['hosts'] }}"
+    - "{{ system['settings']['syslog'] }}"
   when: ansible_net_version < "7"
 
 - name: Update NXOS syslog
@@ -19,7 +19,7 @@
     lines:
       - logging server {{ item.name }} port {{ item.port }}
   with_items:
-    - "{{ system['syslog']['hosts'] }}"
+    - "{{ system['settings']['syslog'] }}"
   when: ansible_net_version > "7"
 
 ## Update Cisco NTP.
@@ -28,7 +28,7 @@
     server: "{{ item.ntp_server }}"
     state: present
   with_items:
-    - "{{ time['ntp']['hosts'] }}"
+    - "{{ system['settings']['ntp'] }}"
 
 #- name: Configure NXOS Syslog
 #  cisco.nxos.nxos_logging:

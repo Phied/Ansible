@@ -3,10 +3,10 @@
   cli_config:
     config: logging forwarding receiver-ip {{ item.name }}
   with_items:
-    - "{{ system['syslog']['hosts'] }}"
+    - "{{ system['settings']['syslog'] }}"
 
 - name: Update Adtran ntp
   cli_config:
     config: ntp server {{ item.ntp_server }}
   with_items:
-    - "{{ time['ntp']['hosts'] }}"
+    - "{{ system['settings']['ntp'] }}"
