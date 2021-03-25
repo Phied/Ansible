@@ -8,3 +8,15 @@
       junipernetworks.junos.junos_netconf:
         listens_on: 830
         state: present
+    
+    - name: update RE_Filter to include netconf
+      junos_config:
+        lines:
+          - set firewall family inet filter RE_FILTER term Allow_Netconf from source-address 209.55.18.115/32
+          - set firewall family inet filter RE_FILTER term Allow_Netconf from source-address 209.55.25.4/32
+          - set firewall family inet filter RE_FILTER term Allow_Netconf from protocol tcp
+          - set firewall family inet filter RE_FILTER term Allow_Netconf from destination-port 830
+          - set firewall family inet filter RE_FILTER term Allow_Netconf then accept
+          - set firewall family inet filter RE_FILTER term Block_Netconf from protocol tcp
+          - set firewall family inet filter RE_FILTER term Block_Netconf from destination-port 830
+          - set firewall family inet filter RE_FILTER term Block_Netconf then discard
