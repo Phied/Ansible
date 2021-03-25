@@ -1,4 +1,9 @@
 ---
+## Debug VARS
+- name: Debug VARS
+  debug:
+  msg: Values "{{ system }}"
+  
 ## Syslog for Junos
 - name: Update Syslog
   junos_config:
