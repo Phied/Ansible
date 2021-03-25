@@ -1,10 +1,11 @@
 system:
+  ntp:
+    hosts:
+      - ntp_server: 129.6.15.29
   syslog:
     hosts:
       - name: 192.168.44.84
         port: 10518
       - name: 192.168.44.85
-  ntp:
-    hosts:
-      - ntp_server: 129.6.15.29
+
       
