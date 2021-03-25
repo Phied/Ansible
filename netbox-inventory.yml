@@ -5,7 +5,3 @@ api_endpoint: https://192.168.6.23:8000
 token: eded9ad250468045d1ff57701525328e9e837945
 validate_certs: False
 config_context: False
-group_by:
-  - site
-device_query_filters:
-  - has_primary_ip: 'true'
