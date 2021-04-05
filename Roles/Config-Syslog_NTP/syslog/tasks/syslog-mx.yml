@@ -20,7 +20,9 @@
   with_items:
     - "{{ system['settings']['del_ntp'] }}"
   tags: ntp
-
+  update: replace
+  confirm: 5
+  
 ## NTP for Junos
 - name: Update NTP - Junos
   junos_config:
