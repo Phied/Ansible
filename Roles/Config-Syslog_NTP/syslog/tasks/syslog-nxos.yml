@@ -1,12 +1,12 @@
 ---
-- name: Get gather_facts
+- name: Get OS Version for Syntax of Syslog
   cisco.nxos.nxos_facts:
     gather_subset:
     - 'config'
 - name: Get OS Version
   debug: var=ansible_net_version
 
-- name: Update NXOS syslog
+- name: Update NXOS syslog - NXOSv6 OS
   cisco.nxos.nxos_config:
     lines:
       - logging server {{ item.name }}
@@ -14,7 +14,7 @@
     - "{{ system['settings']['syslog'] }}"
   when: ansible_net_version < "7"
 
-- name: Update NXOS syslog
+- name: Update NXOS syslog - NXOSv7 OS
   cisco.nxos.nxos_config:
     lines:
       - logging server {{ item.name }} port {{ item.port }}
@@ -22,13 +22,23 @@
     - "{{ system['settings']['syslog'] }}"
   when: ansible_net_version > "7"
 
+## remove Cisco NTP.
+- name: Remove NTP Cisco - NXOS
+  cisco.nxos.nxos_ntp:
+    server: "{{ item.ntp_server }}"
+    state: absent
+  with_items:
+    - "{{ system['settings']['del_ntp'] }}"
+  tags: ntp
+
 ## Update Cisco NTP.
-- name: Update NTP Cisco
+- name: Update NTP Cisco - NXOS
   cisco.nxos.nxos_ntp:
     server: "{{ item.ntp_server }}"
     state: present
   with_items:
     - "{{ system['settings']['ntp'] }}"
+  tags: ntp
 
 #- name: Configure NXOS Syslog
 #  cisco.nxos.nxos_logging:

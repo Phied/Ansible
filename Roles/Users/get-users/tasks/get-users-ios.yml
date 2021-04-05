@@ -1,0 +1,10 @@
+---
+- name: Get Users IOS
+  cisco.ios.ios_command:
+    commands:
+    - show run | i ntp
+  register: users
+  when: ansible_network_os == 'ios'
+
+- name: Users on "{{ inventory_hostname }}"
+  debug: msg="{{ users.stdout_lines }}"

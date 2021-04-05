@@ -3,20 +3,22 @@
 - name: Set default OS to ios
   set_fact: ansible_network_os = 'ios'
   when: ansible_network_os is undefined
-- name: Apply to Cisco
+- name: Run Cisco Tasks
   import_tasks: syslog-ios.yml
   when: 
     - ansible_network_os == 'ios'
     - custom_ansible_network_os is not defined 
-- name: Apply to iosXR
+- name: Run IOSXR Tasks
   import_tasks: syslog-iosxr.yml
   when: ansible_network_os == 'iosxr'
-- name: Apply to NXOS
+- name: Run NXOS Tasks
   import_tasks: syslog-nxos.yml
   when: ansible_network_os == 'nxos'
-- name: Apply to Juniper
+- name: Run JUNOS Tasks
   import_tasks: syslog-mx.yml
   when: ansible_network_os == 'junos'
-- name: Apply to Adtran
+- name: Run AOS Tasks
   import_tasks: syslog-aos.yml
-  when: custom_ansible_network_os == 'aos'
+  when: 
+    - custom_ansible_network_os is defined
+    - custom_ansible_network_os == 'aos'

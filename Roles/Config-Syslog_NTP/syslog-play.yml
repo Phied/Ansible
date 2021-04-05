@@ -1,9 +1,28 @@
 ---
-- hosts: testing
+- hosts: all
   gather_facts: false
   #connection: local
   #connection: netconf
   #connection: network_cli
+  vars:
+    system:
+      settings:
+        ntp:
+          - ntp_server: 129.6.15.28
+          - ntp_server: 132.163.97.1
+          - ntp_server: 132.163.96.1
+        del_ntp:
+          - ntp_server: 18.26.4.105
+          - ntp_server: 23.249.96.19
+          - ntp_server: 10.10.128.50
+          - ntp_server: 129.6.15.29
+          - ntp_server: 129.6.15.30
+          - ntp_server: 129.6.15.26
+          - ntp_server: 129.6.15.27
+          - ntp_server: 149.20.64.28
+        syslog:
+          - name: 192.168.44.84
+            port: 10518
   tasks:
     - import_role:
         name: syslog

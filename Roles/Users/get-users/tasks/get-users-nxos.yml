@@ -1,0 +1,10 @@
+---
+- name: Get Users NXOS
+  cisco.nxos.nxos_command:
+    commands:
+    - show run | i "ntp server"
+  register: users
+  when: ansible_network_os == 'nxos'
+
+- name: Users on "{{ inventory_hostname }}"
+  debug: msg="{{ users.stdout_lines }}"

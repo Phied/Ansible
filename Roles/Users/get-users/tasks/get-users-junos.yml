@@ -1,0 +1,13 @@
+---
+- name: set ansible_connection type
+  set_fact:
+    ansible_connection: network_cli
+      
+- name: Get Users on junos
+  junipernetworks.junos.junos_command:
+    commands: show configuration system ntp | match server
+  register: users
+  when: ansible_network_os == 'junos'
+
+- name: Userlist
+  debug: msg="{{ users.stdout_lines }}"

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: false
+  #connection: local
+  #connection: netconf
+  #connection: network_cli
+  vars:
+    system:
+      settings:
+        ntp:
+          - ntp_server: 129.6.15.29
+          - ntp_server: 129.6.15.30
+        syslog:
+          - name: 192.168.44.84
+            port: 10518
+          - name: 192.168.44.85
+  tasks:
+    - import_role:
+        name: get-users

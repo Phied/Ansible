@@ -1,15 +1,31 @@
 ---
+## Debug VARS
+- name: Debug VARS
+  debug:
+    msg: Values "{{ system }}"
+
 ## Update cisco devices syslogs.
-- name: Update Syslog
+- name: Update Syslog - IOS
   cisco.ios.ios_config:
     src: syslog-cisco.j2
   tags:
     - syslog
 
+## remove Cisco NTP.
+- name: Remove NTP Cisco - NXOS
+  cisco.ios.ios_ntp:
+    server: "{{ item.ntp_server }}"
+    state: absent
+  with_items:
+    - "{{ system['settings']['del_ntp'] }}"
+  tags: ntp
+
 ## Update Cisco NTP.
-- name: Update NTP Cisco
+- name: Update NTP - IOS
   cisco.ios.ios_ntp:
     server: "{{ item.ntp_server }}"
     state: present
   with_items:
     - "{{ system['settings']['ntp'] }}"
+  tags:
+    - ntp

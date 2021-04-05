@@ -1,11 +1,11 @@
 ---
-- name: Update Adtran syslog
+- name: Update syslog - AOS
   cli_config:
     config: logging forwarding receiver-ip {{ item.name }}
   with_items:
     - "{{ system['settings']['syslog'] }}"
 
-- name: Update Adtran ntp
+- name: Update NTP - AOS
   cli_config:
     config: ntp server {{ item.ntp_server }}
   with_items:

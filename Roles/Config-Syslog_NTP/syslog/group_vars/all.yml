@@ -8,30 +8,4 @@ system:
         port: 10518
       - name: 192.168.44.85
 
-router_id: testing
-system:
-  users:
-  - username: admin
-    password: 1f15391d0c27f4abda8b03a4f6e7eec6ada1
-    encrypted: True
-  enable:
-    enable_password: 3f39d07a2fdf3ac29120d2dbd1042cd80022
-    encrypted: True
-  dns_servers:
-    - server: 8.8.8.8
-    - server: 8.8.4.4
-snmp:
-  communities:
-    - string: dctrocommunity
-      type: RO
-      acl-enabled: True
-      acl: snmp-access-acl
-    - string: checkMKrocomm
-      type: RO
-      acl-enabled: True
-      acl: snmp-checkMK-acl
-aaa:
-  servers:
-    - host: tacacs.4dct.com
-      key: 45650618958f70af8e011a508dcff3092601041b39e425a9499729e9cf603ee39fe7
-      encrypted: True     
+      

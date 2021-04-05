@@ -1,21 +1,32 @@
 ---
 ## Debug VARS
-- name: Debug VARS
-  debug:
-    msg: Values "{{ system }}"
+#- name: Debug VARS
+#  debug:
+#    msg: Values "{{ system }}"
 
 ## Syslog for Junos
-- name: Update Syslog
+- name: Update Syslog - Junos
   junos_config:
     src_format: set
     src: syslog-mx.j2
   tags:
     - syslog
 
+## remove Junos NTP.
+- name: Remove NTP Junos
+  junos_config:
+    lines:
+      - delete system ntp server "{{ item.ntp_server }}"
+  with_items:
+    - "{{ system['settings']['del_ntp'] }}"
+  tags: ntp
+
 ## NTP for Junos
-- name: Update NTP
+- name: Update NTP - Junos
   junos_config:
     lines:
       - set system ntp server "{{ item.ntp_server }}"
   with_items:
     - "{{ system['settings']['ntp'] }}"
+  tags:
+    - ntp
