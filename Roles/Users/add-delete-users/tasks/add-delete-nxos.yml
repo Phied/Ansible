@@ -1,0 +1,9 @@
+---
+## remove NXOS NTP.
+- name: Remove Users - NXOS
+  cisco.nxos.nxos_user:
+    name: "{{ item.user }}"
+    state: absent
+  with_items:
+    - "{{ system['settings']['del_user'] }}"
+  tags: delete-user

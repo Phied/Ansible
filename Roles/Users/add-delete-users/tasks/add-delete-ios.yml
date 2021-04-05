@@ -1,0 +1,9 @@
+---
+## remove Cisco NTP.
+- name: Remove Users - IOS
+  cisco.ios.ios_user:
+    name: "{{ item.user }}"
+    state: absent
+  with_items:
+    - "{{ system['settings']['del_user'] }}"
+  tags: delete-user

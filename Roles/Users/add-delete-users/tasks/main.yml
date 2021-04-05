@@ -1,0 +1,14 @@
+---
+  ## This will call all the tasks for different network devices
+- name: Run IOS Tasks
+  import_tasks: add-delete-ios.yml
+  when: ansible_network_os == 'ios'
+  tags: ios
+- name: Run NXOS Tasks
+  import_tasks: add-delete-nxos.yml
+  when: ansible_network_os == 'nxos'
+  tags: nxos
+- name: Run JUNOS Tasks
+  import_tasks: add-delete-junos.yml
+  when: ansible_network_os == 'junos'
+  tags: junos

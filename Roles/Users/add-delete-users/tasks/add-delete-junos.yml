@@ -1,0 +1,9 @@
+---
+## remove junos user.
+- name: Remove Users - Junos
+  junipernetworks.junos.junos_user:
+    name: "{{ item.user }}"
+    state: absent
+  with_items:
+    - "{{ system['settings']['del_user'] }}"
+  tags: delete-user
