@@ -17,12 +17,12 @@
   junos_config:
     lines:
       - delete system ntp server "{{ item.ntp_server }}"
+    update: replace
+    confirm: 5
   with_items:
     - "{{ system['settings']['del_ntp'] }}"
   tags: ntp
-  update: replace
-  confirm: 5
-  
+
 ## NTP for Junos
 - name: Update NTP - Junos
   junos_config:
