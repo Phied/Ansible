@@ -15,9 +15,9 @@
 ## remove Junos NTP.
 - name: Remove NTP Junos
   junos_config:
+    src_format: set
     lines:
       - delete system ntp server "{{ item.ntp_server }}"
-    update: update
     confirm: 5
   with_items:
     - "{{ system['settings']['del_ntp'] }}"
